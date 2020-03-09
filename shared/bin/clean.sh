@@ -16,7 +16,7 @@ fi
 
 INPUT=$1
 echo Running 'gradlew clean' on gradlew projects...
-for c in $(jq '.[] | select(.build == "gradlew").versions[].dir' < "$INPUT"); do
+for c in $(jq '.[] | select(.build == "gradlew").dir' < "$INPUT"); do
   cc=$(sed -e 's/^"//' -e 's/"$//' <<<"$c")
   if [ -d $cc ]; then
      if [ -z $TARGET ] || [[ $cc == $TARGET* ]]; then
@@ -26,7 +26,7 @@ for c in $(jq '.[] | select(.build == "gradlew").versions[].dir' < "$INPUT"); do
 done
 
 echo Running 'mvn clean' on mvn projects...
-for c in $(jq '.[] | select(.build == "mvn").versions[].dir' < "$INPUT"); do
+for c in $(jq '.[] | select(.build == "mvn").dir' < "$INPUT"); do
   cc=$(sed -e 's/^"//' -e 's/"$//' <<<"$c")
   if [ -d $cc ]; then
      if [ -z $TARGET ] || [[ $cc == $TARGET* ]]; then
@@ -34,4 +34,3 @@ for c in $(jq '.[] | select(.build == "mvn").versions[].dir' < "$INPUT"); do
      fi
   fi
 done
-
