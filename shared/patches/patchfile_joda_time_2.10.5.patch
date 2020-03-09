@@ -1,0 +1,73 @@
+--- joda-time-2.10.5/pom.xml	2019-10-24 10:08:04.000000000 -0400
++++ joda-time-2.10.5-patched/pom.xml	2020-03-05 00:39:16.757556135 -0500
+@@ -374,6 +374,49 @@
+           </execution>
+         </executions>
+       </plugin>
++      <plugin>
++        <groupId>org.jacoco</groupId>
++        <artifactId>jacoco-maven-plugin</artifactId>
++        <version>0.8.5</version>
++        <executions>
++            <!--
++                Prepares the property pointing to the JaCoCo runtime agent which
++                is passed as VM argument when Maven the Surefire plugin is executed.
++            -->
++            <execution>
++                <id>pre-unit-test</id>
++                <goals>
++                    <goal>prepare-agent</goal>
++                </goals>
++                <configuration>
++                    <!-- Sets the path to the file which contains the execution data. -->
++                    <destFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</destFile>
++                    <!--
++                        Sets the name of the property containing the settings
++                        for JaCoCo runtime agent.
++                    -->
++                    <propertyName>surefireArgLine</propertyName>
++                </configuration>
++            </execution>
++            <!--
++                Ensures that the code coverage report for unit tests is created after
++                unit tests have been run.
++            -->
++            <execution>
++                <id>post-unit-test</id>
++                <phase>test</phase>
++                <goals>
++                    <goal>report</goal>
++                </goals>
++                <configuration>
++                    <!-- Sets the path to the file which contains the execution data. -->
++                    <dataFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</dataFile>
++                    <!-- Sets the output directory for the code coverage report. -->
++                    <outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
++                </configuration>
++            </execution>
++        </executions>
++      </plugin>
+       <!-- Compile TZDB -->
+       <plugin>
+         <groupId>org.codehaus.mojo</groupId>
+@@ -422,6 +465,8 @@
+         <groupId>org.apache.maven.plugins</groupId>
+         <artifactId>maven-surefire-plugin</artifactId>
+         <configuration>
++          <!-- Sets the VM argument line used when unit tests are run. -->
++          <argLine>${surefireArgLine}</argLine>
+           <includes>
+             <include>**/TestAllPackages.java</include>
+           </includes>
+@@ -585,6 +630,11 @@
+           <groupId>org.apache.maven.plugins</groupId>
+           <artifactId>maven-dependency-plugin</artifactId>
+           <version>${maven-dependency-plugin.version}</version>
++          <configuration>
++              <outputDirectory>
++                ${project.build.directory}/mvn_dependencies
++              </outputDirectory>
++          </configuration>
+         </plugin>
+         <plugin>
+           <groupId>org.apache.maven.plugins</groupId>
