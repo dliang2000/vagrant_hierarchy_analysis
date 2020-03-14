@@ -1,103 +1,67 @@
---- javacc-7.0.5/pom.xml	2019-10-20 10:36:31.000000000 -0400
-+++ javacc-7.0.5-patched/pom.xml	2020-03-05 22:43:32.597314247 -0500
-@@ -129,7 +129,7 @@
- 			<name>Anton Rib</name>
- 		</contributor>
- 		<contributor>
--			<name>Marc Mazas</name>	
-+			<name>Marc Mazas</name>
- 		</contributor>
- 	</contributors>
- 	<licenses>
-@@ -230,6 +230,49 @@
- 		</pluginManagement>
- 		<plugins>
- 			<plugin>
-+				<groupId>org.jacoco</groupId>
-+				<artifactId>jacoco-maven-plugin</artifactId>
-+				<version>0.8.5</version>
-+				<executions>
-+						<!--
-+								Prepares the property pointing to the JaCoCo runtime agent which
-+								is passed as VM argument when Maven the Surefire plugin is executed.
-+						-->
-+						<execution>
-+								<id>pre-unit-test</id>
-+								<goals>
-+										<goal>prepare-agent</goal>
-+								</goals>
-+								<configuration>
-+										<!-- Sets the path to the file which contains the execution data. -->
-+										<destFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</destFile>
-+										<!--
-+												Sets the name of the property containing the settings
-+												for JaCoCo runtime agent.
-+										-->
-+										<propertyName>surefireArgLine</propertyName>
-+								</configuration>
-+						</execution>
-+						<!--
-+								Ensures that the code coverage report for unit tests is created after
-+								unit tests have been run.
-+						-->
-+						<execution>
-+								<id>post-unit-test</id>
-+								<phase>test</phase>
-+								<goals>
-+										<goal>report</goal>
-+								</goals>
-+								<configuration>
-+										<!-- Sets the path to the file which contains the execution data. -->
-+										<dataFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</dataFile>
-+										<!-- Sets the output directory for the code coverage report. -->
-+										<outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
-+								</configuration>
-+						</execution>
-+				</executions>
-+			</plugin>
-+			<plugin>
- 				<groupId>org.codehaus.mojo</groupId>
- 				<artifactId>javacc-maven-plugin</artifactId>
- 				<executions>
-@@ -265,7 +308,8 @@
- 					</includes>
- 					<excludes>
- 					</excludes>
--					<argLine>-noverify</argLine>
-+					<argLine>${surefireArgLine}</argLine>
-+					<!-- <argLine>-noverify</argLine> -->
- 				</configuration>
- 			</plugin>
- 			<plugin>
-@@ -317,7 +361,7 @@
- 									<arg line="examples/GUIParsing/ParserVersion/CalcInput.jj" />
- 								</java>
- 								<javac fork="true" srcdir="test.tmp/GUIParsing/ParserVersion" />
--								<!-- 
-+								<!--
- 								<echo />
- 								<copy todir="test.tmp/GUIParsing/TokenMgrVersion">
- 									<fileset dir="examples/GUIParsing/TokenMgrVersion">
-@@ -325,7 +369,7 @@
- 									</fileset>
- 								</copy>
- 								<java failonerror="true" fork="true" classname="javacc" classpath="target/classes">
--									<arg line="-OUTPUT_DIRECTORY=test.tmp/GUIParsing/TokenMgrVersion" /> 
-+									<arg line="-OUTPUT_DIRECTORY=test.tmp/GUIParsing/TokenMgrVersion" />
- 									<arg line="examples/GUIParsing/TokenMgrVersion/CalcInput.jj" />
- 								</java>
- 								<javac fork="true" srcdir="test.tmp/GUIParsing/TokenMgrVersion" />
-@@ -392,7 +436,7 @@
- 									<arg line="examples/JJTreeExamples/java/eg1.jjt" />
- 								</java>
- 								<java fork="true" classname="javacc" classpath="target/classes">
--									<arg line="-OUTPUT_DIRECTORY=test.tmp/JJTreeExamples.eg1" /> 
-+									<arg line="-OUTPUT_DIRECTORY=test.tmp/JJTreeExamples.eg1" />
- 									<arg line="test.tmp/JJTreeExamples.eg1/eg1.jj" />
- 								</java>
- 								<javac fork="true" srcdir="test.tmp/JJTreeExamples.eg1" />
-@@ -734,4 +778,3 @@
- 		</plugins>
- 	</reporting>
- </project>
--
+132c132
+< 			<name>Marc Mazas</name>	
+---
+> 			<name>Marc Mazas</name>
+232a233,275
+> 				<groupId>org.jacoco</groupId>
+> 				<artifactId>jacoco-maven-plugin</artifactId>
+> 				<version>0.8.5</version>
+> 				<executions>
+> 						<!--
+> 								Prepares the property pointing to the JaCoCo runtime agent which
+> 								is passed as VM argument when Maven the Surefire plugin is executed.
+> 						-->
+> 						<execution>
+> 								<id>pre-unit-test</id>
+> 								<goals>
+> 										<goal>prepare-agent</goal>
+> 								</goals>
+> 								<configuration>
+> 										<!-- Sets the path to the file which contains the execution data. -->
+> 										<destFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</destFile>
+> 										<!--
+> 												Sets the name of the property containing the settings
+> 												for JaCoCo runtime agent.
+> 										-->
+> 										<propertyName>surefireArgLine</propertyName>
+> 								</configuration>
+> 						</execution>
+> 						<!--
+> 								Ensures that the code coverage report for unit tests is created after
+> 								unit tests have been run.
+> 						-->
+> 						<execution>
+> 								<id>post-unit-test</id>
+> 								<phase>test</phase>
+> 								<goals>
+> 										<goal>report</goal>
+> 								</goals>
+> 								<configuration>
+> 										<!-- Sets the path to the file which contains the execution data. -->
+> 										<dataFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</dataFile>
+> 										<!-- Sets the output directory for the code coverage report. -->
+> 										<outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
+> 								</configuration>
+> 						</execution>
+> 				</executions>
+> 			</plugin>			
+> 			<plugin>
+268c311,312
+< 					<argLine>-noverify</argLine>
+---
+> 					<argLine>${surefireArgLine}</argLine>
+> 					<!-- <argLine>-noverify</argLine> -->
+320c364
+< 								<!-- 
+---
+> 								<!--
+328c372
+< 									<arg line="-OUTPUT_DIRECTORY=test.tmp/GUIParsing/TokenMgrVersion" /> 
+---
+> 									<arg line="-OUTPUT_DIRECTORY=test.tmp/GUIParsing/TokenMgrVersion" />
+395c439
+< 									<arg line="-OUTPUT_DIRECTORY=test.tmp/JJTreeExamples.eg1" /> 
+---
+> 									<arg line="-OUTPUT_DIRECTORY=test.tmp/JJTreeExamples.eg1" />
+737d780
+< 
