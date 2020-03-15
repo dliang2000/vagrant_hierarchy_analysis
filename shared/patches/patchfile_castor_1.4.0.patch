@@ -1,0 +1,141 @@
+--- castor-1.4.0/parent/pom.xml	2015-12-02 10:00:16.000000000 -0500
++++ castor-1.4.0-patched/parent/pom.xml	2020-03-14 20:58:23.043657698 -0400
+@@ -169,8 +169,60 @@
+             </plugin>
+          </plugins>
+       </pluginManagement>
+-
+       <plugins>
++        <plugin>
++          <groupId>org.jacoco</groupId>
++          <artifactId>jacoco-maven-plugin</artifactId>
++          <version>0.8.5</version>
++          <executions>
++              <!--
++                  Prepares the property pointing to the JaCoCo runtime agent which
++                  is passed as VM argument when Maven the Surefire plugin is executed.
++              -->
++              <execution>
++                  <id>pre-unit-test</id>
++                  <goals>
++                      <goal>prepare-agent</goal>
++                  </goals>
++                  <configuration>
++                      <!-- Sets the path to the file which contains the execution data. -->
++                      <destFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</destFile>
++                      <!--
++                          Sets the name of the property containing the settings
++                          for JaCoCo runtime agent.
++                      -->
++                      <propertyName>surefireArgLine</propertyName>
++                  </configuration>
++              </execution>
++              <!--
++                  Ensures that the code coverage report for unit tests is created after
++                  unit tests have been run.
++              -->
++              <execution>
++                  <id>post-unit-test</id>
++                  <phase>test</phase>
++                  <goals>
++                      <goal>report</goal>
++                  </goals>
++                  <configuration>
++                      <!-- Sets the path to the file which contains the execution data. -->
++                      <dataFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</dataFile>
++                      <!-- Sets the output directory for the code coverage report. -->
++                      <outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
++                  </configuration>
++              </execution>
++          </executions>
++        </plugin>
++        <!-- Setup testing -->
++        <plugin>
++            <groupId>org.apache.maven.plugins</groupId>
++            <artifactId>maven-surefire-plugin</artifactId>
++            <version>2.19.1</version>
++            <configuration>
++                <!-- Sets the VM argument line used when unit tests are run. -->
++                <argLine>${surefireArgLine}</argLine>
++            </configuration>
++        </plugin>
+          <plugin>
+             <groupId>org.apache.maven.plugins</groupId>
+             <artifactId>maven-compiler-plugin</artifactId>
+@@ -188,23 +240,23 @@
+             <configuration>
+                <archive>
+                   <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+-                  <!-- <manifestEntries> <Specification-Version>${project.version}</Specification-Version> 
+-                     <Specification-Title>Castor XML</Specification-Title> <Specification-Vendor>Intalio 
+-                     Inc.</Specification-Vendor> <Implementation-Title>Castor</Implementation-Title> 
+-                     <Implementation-Vendor>Intalio Inc.</Implementation-Vendor> <Implementation-Version>${project.version}</Implementation-Version> 
++                  <!-- <manifestEntries> <Specification-Version>${project.version}</Specification-Version>
++                     <Specification-Title>Castor XML</Specification-Title> <Specification-Vendor>Intalio
++                     Inc.</Specification-Vendor> <Implementation-Title>Castor</Implementation-Title>
++                     <Implementation-Vendor>Intalio Inc.</Implementation-Vendor> <Implementation-Version>${project.version}</Implementation-Version>
+                      <url>${project.url}</url> </manifestEntries> -->
+                </archive>
+             </configuration>
+-            <!-- <configuration> <archive> <index>true</index> <manifest> 
+-               <addClasspath>true</addClasspath> </manifest> <manifestEntries> <mode>development</mode> 
+-               <url>${project.url}</url> <key>value</key> </manifestEntries> </archive> 
++            <!-- <configuration> <archive> <index>true</index> <manifest>
++               <addClasspath>true</addClasspath> </manifest> <manifestEntries> <mode>development</mode>
++               <url>${project.url}</url> <key>value</key> </manifestEntries> </archive>
+                </configuration> -->
+          </plugin>
+ 
+-         <!-- <plugin> <groupId>com.atlassian.maven.plugins</groupId> <artifactId>maven-clover2-plugin</artifactId> 
+-            <version>2.6.1</version> <configuration> <cloverDatabase>target/clover-db</cloverDatabase> 
+-            <licenseLocation>${basedir}/src/etc/CLOVER.LICENSE</licenseLocation> </configuration> 
+-            <executions> <execution> <phase>pre-site</phase> <goals> <goal>instrument</goal> 
++         <!-- <plugin> <groupId>com.atlassian.maven.plugins</groupId> <artifactId>maven-clover2-plugin</artifactId>
++            <version>2.6.1</version> <configuration> <cloverDatabase>target/clover-db</cloverDatabase>
++            <licenseLocation>${basedir}/src/etc/CLOVER.LICENSE</licenseLocation> </configuration>
++            <executions> <execution> <phase>pre-site</phase> <goals> <goal>instrument</goal>
+             </goals> </execution> </executions> </plugin> -->
+ 
+          <plugin>
+@@ -420,7 +472,7 @@
+          </dependency>
+ 
+          <!-- temp. removed as src/tests is not on the test compilation path -->
+-         <!-- <dependency> <groupId>org.mockejb</groupId> <artifactId>mockejb</artifactId> 
++         <!-- <dependency> <groupId>org.mockejb</groupId> <artifactId>mockejb</artifactId>
+             <version>0.5</version> <optional>true</optional> </dependency> -->
+ 
+          <dependency>
+@@ -618,10 +670,10 @@
+             <version>2.15</version>
+          </plugin>
+ 
+-         <!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-pmd-plugin</artifactId> 
+-            <version>3.4</version> <configuration> <targetJdk>1.5</targetJdk> <rulesets> 
+-            <ruleset>/rulesets/basic.xml</ruleset> <ruleset>/rulesets/controversial.xml</ruleset> 
+-            </rulesets> <format>xml</format> <linkXref>true</linkXref> <sourceEncoding>utf-8</sourceEncoding> 
++         <!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-pmd-plugin</artifactId>
++            <version>3.4</version> <configuration> <targetJdk>1.5</targetJdk> <rulesets>
++            <ruleset>/rulesets/basic.xml</ruleset> <ruleset>/rulesets/controversial.xml</ruleset>
++            </rulesets> <format>xml</format> <linkXref>true</linkXref> <sourceEncoding>utf-8</sourceEncoding>
+             <minimumTokens>100</minimumTokens> </configuration> </plugin> -->
+          <plugin>
+             <groupId>org.codehaus.mojo</groupId>
+@@ -682,12 +734,12 @@
+                   </executions>
+                </plugin>
+ 
+-                  <!-- <plugin> <groupId>org.apache.maven.plugins</groupId> 
+-                     <artifactId>maven-changes-plugin</artifactId> <version>2.11</version> <reportSets> 
+-                     <reportSet> <reports> <report>github-report</report> </reports> </reportSet> 
+-                     </reportSets> <configuration> <githubAPIScheme>https</githubAPIScheme> <githubAPIPort>443</githubAPIPort> 
++                  <!-- <plugin> <groupId>org.apache.maven.plugins</groupId>
++                     <artifactId>maven-changes-plugin</artifactId> <version>2.11</version> <reportSets>
++                     <reportSet> <reports> <report>github-report</report> </reports> </reportSet>
++                     </reportSets> <configuration> <githubAPIScheme>https</githubAPIScheme> <githubAPIPort>443</githubAPIPort>
+                      </configuration> </plugin> -->
+-                     
++
+             </plugins>
+          </build>
+       </profile>
