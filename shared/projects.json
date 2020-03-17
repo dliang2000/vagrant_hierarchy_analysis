@@ -7,7 +7,6 @@
   "version": "1.10.1",
   "source": "https://github.com/jhy/jsoup/archive/jsoup-1.10.1.tar.gz",
   "patch": "../shared/patches/patchfile_jsoup_jsoup_1.10.1.patch",
-  "python": "../shared/python_scripts/jsoup_jsoup_1.10.1_processing.py",
   "dir": "jsoup-jsoup-1.10.1"
     },
     {
@@ -19,7 +18,6 @@
   "version": "3.9",
   "source": "http://archive.apache.org/dist/commons/lang/source/commons-lang3-3.9-src.tar.gz",
   "patch": "../shared/patches/patchfile_commons_lang3_3.9.patch",
-  "python": "../shared/python_scripts/commons_lang3_3.9_src_processing.py",
   "dir": "commons-lang3-3.9-src"
     },
     {
@@ -31,7 +29,6 @@
   "version": "2.10.5",
   "source": "https://github.com/JodaOrg/joda-time/archive/v2.10.5.tar.gz",
   "patch": "../shared/patches/patchfile_joda_time_2.10.5.patch",
-  "python": "../shared/python_scripts/joda_time_2.10.5_processing.py",
   "dir": "joda-time-2.10.5"
     },
     {
@@ -43,7 +40,6 @@
   "version": "3.0.1",
   "source": "https://sourceforge.net/projects/findbugs/files/findbugs/3.0.1/findbugs-3.0.1-source.zip",
   "patch": "../shared/patches/patchfile_findbugs_3.0.1.patch",
-  "python": "../shared/python_scripts/findbugs_3.0.1_processing.py",
   "dir": "findbugs-3.0.1"
     },
     {
@@ -55,7 +51,6 @@
   "version": "2.8.5",
   "source": "https://github.com/google/gson/archive/gson-parent-2.8.5.tar.gz",
   "patch": "../shared/patches/patchfile_gson_2.8.5.patch",
-  "python": "../shared/python_scripts/gson_2.8.5_processing.py",
   "dir": "gson-gson-parent-2.8.5"
     },
     {
@@ -78,7 +73,39 @@
   "version": "7.0.5",
   "source": "https://github.com/javacc/javacc/archive/7.0.5.tar.gz",
   "patch": "../shared/patches/patchfile_javacc_7.0.5.patch",
-  "python": "../shared/python_scripts/javacc_7.0.5_processing.py",   
   "dir": "javacc-7.0.5"
+    },
+    {
+  "name": "velocity-engine-core",
+  "url": "https://velocity.apache.org/engine/",
+  "releases": "https://github.com/apache/velocity-engine/releases",
+  "type": "tgz",
+  "build": "mvn",
+  "version": "2.1",
+  "source": "https://github.com/apache/velocity-engine/archive/2.1.tar.gz",
+  "patch": "../shared/patches/patchfile_velocity_engine_2.1_core.patch",
+  "dir": "velocity-engine-2.1"
+    },
+    {
+  "name": "castor",
+  "url": "https://castor-data-binding.github.io/castor/reference-guide/reference/xml/xml-framework.html",
+  "releases": "https://github.com/castor-data-binding/castor/releases",
+  "type": "tgz",
+  "build": "mvn",
+  "version": "1.4.0",
+  "source": "https://github.com/castor-data-binding/castor/archive/v1.4.0.tar.gz",
+  "patch": "../shared/patches/patchfile_castor_1.4.0.patch",
+  "dir": "castor-1.4.0"
+    },
+    {
+  "name": "quartz",
+  "url": "http://www.quartz-scheduler.org/overview/",
+  "releases": "https://github.com/quartz-scheduler/quartz/releases",
+  "type": "tgz",
+  "build": "mvn",
+  "version": "2.3.1",
+  "source": "https://github.com/quartz-scheduler/quartz/archive/quartz-2.3.1.tar.gz",
+  "patch": "../shared/patches/patchfile_quartz_2.3.1.patch",
+  "dir": "quartz-quartz-2.3.1"
     }
 ]
