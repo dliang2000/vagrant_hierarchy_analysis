@@ -7,6 +7,9 @@
   "version": "1.10.1",
   "source": "https://github.com/jhy/jsoup/archive/jsoup-1.10.1.tar.gz",
   "patch": "../shared/patches/patchfile_jsoup_jsoup_1.10.1.patch",
+  "exec": "target/coverage-reports/jacoco-ut.exec",
+  "target": "./target/classes/",
+  "xml": "./jsoup_jsoup_1.10.1_coverage.xml",
   "dir": "jsoup-jsoup-1.10.1"
     },
     {
@@ -18,6 +21,9 @@
   "version": "3.9",
   "source": "http://archive.apache.org/dist/commons/lang/source/commons-lang3-3.9-src.tar.gz",
   "patch": "../shared/patches/patchfile_commons_lang3_3.9.patch",
+  "exec": "target/jacoco.exec",
+  "target": "./target/classes/",
+  "xml": "./commons_lang3_3.9_src_coverage.xml",
   "dir": "commons-lang3-3.9-src"
     },
     {
@@ -29,6 +35,9 @@
   "version": "2.10.5",
   "source": "https://github.com/JodaOrg/joda-time/archive/v2.10.5.tar.gz",
   "patch": "../shared/patches/patchfile_joda_time_2.10.5.patch",
+  "exec": "target/coverage-reports/jacoco-ut.exec",
+  "target": "./target/classes/",
+  "xml": "./joda_time_2.10.5_coverage.xml",
   "dir": "joda-time-2.10.5"
     },
     {
@@ -40,6 +49,9 @@
   "version": "3.0.1",
   "source": "https://sourceforge.net/projects/findbugs/files/findbugs/3.0.1/findbugs-3.0.1-source.zip",
   "patch": "../shared/patches/patchfile_findbugs_3.0.1.patch",
+  "exec": "target/coverage-reports/jacoco-ut.exec",
+  "target": "./target/classes/",
+  "xml": "./findbugs_3.0.1_coverage.xml",
   "dir": "findbugs-3.0.1"
     },
     {
@@ -51,6 +63,9 @@
   "version": "2.8.5",
   "source": "https://github.com/google/gson/archive/gson-parent-2.8.5.tar.gz",
   "patch": "../shared/patches/patchfile_gson_2.8.5.patch",
+  "exec": "gson/target/coverage-reports/jacoco-ut.exec",
+  "target": "./target/classes/",
+  "xml": "./gson_2.8.5_coverage.xml",
   "dir": "gson-gson-parent-2.8.5"
     },
     {
@@ -62,6 +77,9 @@
   "version": "1.3.1",
   "source": "https://github.com/jgrapht/jgrapht/archive/jgrapht-1.3.1.tar.gz",
   "patch": "../shared/patches/patchfile_jgrapht_1.3.1.patch",
+  "exec": "jgrapht-core/target/coverage-reports/jacoco-ut.exec",
+  "target": "jgrapht-core/target/classes/",
+  "xml": "./jgrapht_1.3.1_core_coverage.xml",
   "dir": "jgrapht-jgrapht-1.3.1"
     },
     {
@@ -73,6 +91,9 @@
   "version": "7.0.5",
   "source": "https://github.com/javacc/javacc/archive/7.0.5.tar.gz",
   "patch": "../shared/patches/patchfile_javacc_7.0.5.patch",
+  "exec": "target/coverage-reports/jacoco-ut.exec",
+  "target": "./target/classes/",
+  "xml": "./javacc_7.0.5_coverage.xml",
   "dir": "javacc-7.0.5"
     },
     {
@@ -84,6 +105,9 @@
   "version": "2.1",
   "source": "https://github.com/apache/velocity-engine/archive/2.1.tar.gz",
   "patch": "../shared/patches/patchfile_velocity_engine_2.1_core.patch",
+  "exec": "velocity-engine-core/target/coverage-reports/jacoco-ut.exec",
+  "target": "velocity-engine-core/target/classes/",
+  "xml": "./velocity_engine_2.1_core_coverage.xml",
   "dir": "velocity-engine-2.1"
     },
     {
@@ -95,6 +119,9 @@
   "version": "1.4.0",
   "source": "https://github.com/castor-data-binding/castor/archive/v1.4.0.tar.gz",
   "patch": "../shared/patches/patchfile_castor_1.4.0.patch",
+  "exec": "schema/target/coverage-reports/jacoco-ut.exec",
+  "target": "schema/target/classes/",
+  "xml": "./castor_1.4.0_schema_coverage.xml",
   "dir": "castor-1.4.0"
     },
     {
@@ -106,6 +133,9 @@
   "version": "2.3.1",
   "source": "https://github.com/quartz-scheduler/quartz/archive/quartz-2.3.1.tar.gz",
   "patch": "../shared/patches/patchfile_quartz_2.3.1.patch",
+  "exec": "quartz-core/target/coverage-reports/jacoco-ut.exec",
+  "target": "quartz-core/target/classes/",
+  "xml": "./quartz_core_2.3.1_coverage.xml",  
   "dir": "quartz-quartz-2.3.1"
     }
 ]
