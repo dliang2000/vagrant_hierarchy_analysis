@@ -125,6 +125,32 @@
   "dir": "castor-1.4.0"
     },
     {
+  "name": "soot",
+  "url": "https://github.com/Sable/soot",
+  "type": "tgz",
+  "build": "mvn",
+  "version": "4.0",
+  "source": "https://github.com/Sable/soot/archive/4.0.0.tar.gz",
+  "patch": "../shared/patches/patchfile_soot_4.0.0.patch",
+  "exec": "target/coverage-reports/jacoco-ut.exec",
+  "target": "./target/classes/",
+  "xml": "./soot_4.0.0_coverage.xml",
+  "dir": "soot-4.0.0"
+    },
+    {
+  "name": "plexus-utils",
+  "url": "https://github.com/codehaus-plexus/plexus-utils",
+  "type": "tgz",
+  "build": "mvn",
+  "version": "3.3.0",
+  "source": "https://github.com/codehaus-plexus/plexus-utils/archive/plexus-utils-3.3.0.tar.gz",
+  "patch": "../shared/patches/patchfile_plexus_utils_3.3.0.patch",
+  "exec": "target/coverage-reports/jacoco-ut.exec",
+  "target": "./target/classes/",
+  "xml": "./plexus_utils_3.3.0_coverage.xml",
+  "dir": "plexus-utils-plexus-utils-3.3.0"
+    },
+    {
   "name": "jackson-annotations",
   "url": "https://github.com/FasterXML/jackson-annotations",
   "type": "tgz",
