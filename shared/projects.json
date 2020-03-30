@@ -125,6 +125,33 @@
   "dir": "castor-1.4.0"
     },
     {
+  "name": "jackson-annotations",
+  "url": "https://github.com/FasterXML/jackson-annotations",
+  "type": "tgz",
+  "build": "mvn",
+  "version": "2.10.2",
+  "source": "https://github.com/FasterXML/jackson-annotations/archive/jackson-annotations-2.10.2.tar.gz",
+  "patch": "../shared/patches/patchfile_jackson_annotations_2.10.2.patch",
+  "exec": "target/coverage-reports/jacoco-ut.exec",
+  "target": "./target/classes/",
+  "xml": "./jackson_annotations_2.10.2_coverage.xml",
+  "dir": "jackson-annotations-jackson-annotations-2.10.2"
+    },
+    {
+  "name": "ph-commons",
+  "url": "https://github.com/phax/ph-commons",
+  "type": "tgz",
+  "build": "mvn",
+  "version": "9.3.9",
+  "source": "https://github.com/phax/ph-commons/archive/ph-commons-parent-pom-9.3.9.tar.gz",
+  "patch": "../shared/patches/patchfile_ph_commons_parent_9.3.9.patch",
+  "exec": "target/coverage-reports/jacoco-ut.exec",
+  "target": "./target/classes/",
+  "xml": "./ph_commons_ph_commons_9.3.9_coverage.xml",
+  "dir": "ph-commons-ph-commons-parent-pom-9.3.9",
+  "sub-dir":"ph-commons"
+    },
+    {
   "name": "quartz",
   "url": "http://www.quartz-scheduler.org/overview/",
   "releases": "https://github.com/quartz-scheduler/quartz/releases",
@@ -135,7 +162,7 @@
   "patch": "../shared/patches/patchfile_quartz_2.3.1.patch",
   "exec": "quartz-core/target/coverage-reports/jacoco-ut.exec",
   "target": "quartz-core/target/classes/",
-  "xml": "./quartz_core_2.3.1_coverage.xml",  
+  "xml": "./quartz_core_2.3.1_coverage.xml",
   "dir": "quartz-quartz-2.3.1"
     }
 ]

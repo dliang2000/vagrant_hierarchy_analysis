@@ -1,0 +1,90 @@
+--- jackson-annotations-jackson-annotations-2.10.2/pom.xml	2020-01-04 21:02:41.000000000 -0500
++++ jackson-annotations-jackson-annotations-2.10.2-patched/pom.xml	2020-03-29 21:33:39.035947124 -0400
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+-  <modelVersion>4.0.0</modelVersion> 
++  <modelVersion>4.0.0</modelVersion>
+   <parent>
+     <groupId>com.fasterxml.jackson</groupId>
+     <!-- this is one of few Jackson modules that depends on parent and NOT jackson-bom -->
+@@ -50,7 +50,7 @@
+   <build>
+     <plugins>
+       <plugin>
+-        <!-- 08-Mar-2019, tatu: Would get these settings from `jackson-bom` except we 
++        <!-- 08-Mar-2019, tatu: Would get these settings from `jackson-bom` except we
+               do not extend it so...
+           -->
+         <groupId>org.moditect</groupId>
+@@ -72,8 +72,8 @@
+         </executions>
+       </plugin>
+ 
+-      <!-- 08-Nov-2019, tatu: Copied from                                                                                   
+-           https://github.com/stephenc/git-timestamp-maven-plugin/blob/master/pom.xml#L327-L337                             
++      <!-- 08-Nov-2019, tatu: Copied from
++           https://github.com/stephenc/git-timestamp-maven-plugin/blob/master/pom.xml#L327-L337
+          -->
+       <plugin>
+         <groupId>org.sonatype.plugins</groupId>
+@@ -86,6 +86,59 @@
+           <stagingProfileId>b34f19b9cc6224</stagingProfileId>
+         </configuration>
+       </plugin>
++      <plugin>
++        <groupId>org.jacoco</groupId>
++        <artifactId>jacoco-maven-plugin</artifactId>
++        <version>0.8.5</version>
++        <executions>
++            <!--
++                Prepares the property pointing to the JaCoCo runtime agent which
++                is passed as VM argument when Maven the Surefire plugin is executed.
++            -->
++            <execution>
++                <id>pre-unit-test</id>
++                <goals>
++                    <goal>prepare-agent</goal>
++                </goals>
++                <configuration>
++                    <!-- Sets the path to the file which contains the execution data. -->
++                    <destFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</destFile>
++                    <!--
++                        Sets the name of the property containing the settings
++                        for JaCoCo runtime agent.
++                    -->
++                    <propertyName>surefireArgLine</propertyName>
++                </configuration>
++            </execution>
++            <!--
++                Ensures that the code coverage report for unit tests is created after
++                unit tests have been run.
++            -->
++            <execution>
++                <id>post-unit-test</id>
++                <phase>test</phase>
++                <goals>
++                    <goal>report</goal>
++                </goals>
++                <configuration>
++                    <!-- Sets the path to the file which contains the execution data. -->
++                    <dataFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</dataFile>
++                    <!-- Sets the output directory for the code coverage report. -->
++                    <outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
++                </configuration>
++            </execution>
++        </executions>
++      </plugin>
++      <!-- Setup testing -->
++      <plugin>
++          <groupId>org.apache.maven.plugins</groupId>
++          <artifactId>maven-surefire-plugin</artifactId>
++          <version>2.19.1</version>
++          <configuration>
++              <!-- Sets the VM argument line used when unit tests are run. -->
++              <argLine>${surefireArgLine}</argLine>
++          </configuration>
++      </plugin>
+     </plugins>
+   </build>
+ 

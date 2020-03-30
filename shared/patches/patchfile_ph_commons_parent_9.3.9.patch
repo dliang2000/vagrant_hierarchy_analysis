@@ -1,0 +1,123 @@
+--- ph-commons-ph-commons-parent-pom-9.3.9/pom.xml	2019-12-11 13:34:55.000000000 -0500
++++ ph-commons-ph-commons-parent-pom-9.3.9-patched/pom.xml	2020-03-29 21:02:50.471232009 -0400
+@@ -31,7 +31,7 @@
+   <description>Base POM to build the ph-commons projects</description>
+   <url>https://github.com/phax/ph-commons</url>
+   <inceptionYear>2014</inceptionYear>
+- 
++
+   <licenses>
+     <license>
+       <name>Apache 2</name>
+@@ -39,7 +39,7 @@
+       <distribution>repo</distribution>
+     </license>
+   </licenses>
+-  
++
+   <scm>
+     <connection>scm:git:git@github.com:phax/ph-commons.git</connection>
+     <developerConnection>scm:git:git@github.com:phax/ph-commons.git</developerConnection>
+@@ -60,13 +60,13 @@
+       <url>http://www.helger.com</url>
+     </developer>
+   </developers>
+-  
++
+   <properties>
+     <!-- For surefire plugin (use property for JaCoCo integration) -->
+     <argLine>-Xmx1024m</argLine>
+     <bc.version>1.64</bc.version>
+   </properties>
+-  
++
+   <dependencyManagement>
+     <dependencies>
+       <!-- We need jsr305 and not annotations because SuppressFBWarnings is contained! -->
+@@ -206,14 +206,14 @@
+       <scope>test</scope>
+     </dependency>
+ 
+-    <!-- JUnit 4 -->  
++    <!-- JUnit 4 -->
+     <dependency>
+       <groupId>junit</groupId>
+       <artifactId>junit</artifactId>
+       <scope>test</scope>
+     </dependency>
+-    <!-- JUnit 5 -->  
+-    <!-- 
++    <!-- JUnit 5 -->
++    <!--
+     <dependency>
+       <groupId>org.junit.jupiter</groupId>
+       <artifactId>junit-jupiter-api</artifactId>
+@@ -231,7 +231,7 @@
+     </dependency>
+      -->
+   </dependencies>
+-  
++
+   <modules>
+     <module>ph-commons</module>
+     <module>ph-collection</module>
+@@ -256,6 +256,59 @@
+   <build>
+     <plugins>
+       <plugin>
++        <groupId>org.jacoco</groupId>
++        <artifactId>jacoco-maven-plugin</artifactId>
++        <version>0.8.5</version>
++        <executions>
++            <!--
++                Prepares the property pointing to the JaCoCo runtime agent which
++                is passed as VM argument when Maven the Surefire plugin is executed.
++            -->
++            <execution>
++                <id>pre-unit-test</id>
++                <goals>
++                    <goal>prepare-agent</goal>
++                </goals>
++                <configuration>
++                    <!-- Sets the path to the file which contains the execution data. -->
++                    <destFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</destFile>
++                    <!--
++                        Sets the name of the property containing the settings
++                        for JaCoCo runtime agent.
++                    -->
++                    <propertyName>surefireArgLine</propertyName>
++                </configuration>
++            </execution>
++            <!--
++                Ensures that the code coverage report for unit tests is created after
++                unit tests have been run.
++            -->
++            <execution>
++                <id>post-unit-test</id>
++                <phase>test</phase>
++                <goals>
++                    <goal>report</goal>
++                </goals>
++                <configuration>
++                    <!-- Sets the path to the file which contains the execution data. -->
++                    <dataFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</dataFile>
++                    <!-- Sets the output directory for the code coverage report. -->
++                    <outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
++                </configuration>
++            </execution>
++        </executions>
++      </plugin>
++      <!-- Setup testing -->
++      <plugin>
++          <groupId>org.apache.maven.plugins</groupId>
++          <artifactId>maven-surefire-plugin</artifactId>
++          <version>2.19.1</version>
++          <configuration>
++              <!-- Sets the VM argument line used when unit tests are run. -->
++              <argLine>${surefireArgLine}</argLine>
++          </configuration>
++      </plugin>
++      <plugin>
+         <groupId>de.thetaphi</groupId>
+         <artifactId>forbiddenapis</artifactId>
+         <configuration>
