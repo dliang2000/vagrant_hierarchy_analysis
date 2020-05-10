@@ -1,0 +1,39 @@
+--- fastjson-1.2.62/pom.xml	2020-05-07 22:40:46.933861384 -0400
++++ fastjson-1.2.62-patched/pom.xml	2020-05-07 22:45:28.437269828 -0400
+@@ -145,7 +145,7 @@
+                     <attach>true</attach>
+                 </configuration>
+             </plugin>
+-						
++
+ 						<plugin>
+ 							<groupId>org.jacoco</groupId>
+ 							<artifactId>jacoco-maven-plugin</artifactId>
+@@ -190,15 +190,18 @@
+ 							</executions>
+ 						</plugin>
+ 
+-						<plugin>
+-			          <groupId>org.apache.maven.plugins</groupId>
+-			          <artifactId>maven-surefire-plugin</artifactId>
+-			          <version>2.19.1</version>
+-			          <configuration>
+-			              <!-- Sets the VM argument line used when unit tests are run. -->
+-			              <argLine>${surefireArgLine}</argLine>
+-			          </configuration>
+-			      </plugin>
++            <plugin>
++                <groupId>org.apache.maven.plugins</groupId>
++                <artifactId>maven-surefire-plugin</artifactId>
++								<version>2.19.1</version>
++                <configuration>
++										<!-- Sets the VM argument line used when unit tests are run. -->
++		              	<argLine>${surefireArgLine}</argLine>
++                    <includes>
++                        <include>**/bvt/**/*.java</include>
++                    </includes>
++                </configuration>
++            </plugin>
+ 
+             <plugin>
+                 <artifactId>maven-javadoc-plugin</artifactId>

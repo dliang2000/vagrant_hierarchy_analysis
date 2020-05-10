@@ -8,7 +8,7 @@
   "source": "https://github.com/jhy/jsoup/archive/jsoup-1.10.1.tar.gz",
   "patch": "../shared/patches/patchfile_jsoup_jsoup_1.10.1.patch",
   "exec": "target/coverage-reports/jacoco-ut.exec",
-  "target": "./target/classes/",
+  "target": "target/classes/",
   "xml": "./jsoup_jsoup_1.10.1_coverage.xml",
   "dir": "jsoup-jsoup-1.10.1"
     },
@@ -22,7 +22,7 @@
   "source": "http://archive.apache.org/dist/commons/lang/source/commons-lang3-3.9-src.tar.gz",
   "patch": "../shared/patches/patchfile_commons_lang3_3.9.patch",
   "exec": "target/jacoco.exec",
-  "target": "./target/classes/",
+  "target": "target/classes/",
   "xml": "./commons_lang3_3.9_src_coverage.xml",
   "dir": "commons-lang3-3.9-src"
     },
@@ -36,7 +36,7 @@
   "source": "https://github.com/JodaOrg/joda-time/archive/v2.10.5.tar.gz",
   "patch": "../shared/patches/patchfile_joda_time_2.10.5.patch",
   "exec": "target/coverage-reports/jacoco-ut.exec",
-  "target": "./target/classes/",
+  "target": "target/classes/",
   "xml": "./joda_time_2.10.5_coverage.xml",
   "dir": "joda-time-2.10.5"
     },
@@ -51,7 +51,7 @@
   "patch": "../shared/patches/patchfile_findbugs_3.0.1.patch",
   "exec": "target/coverage-reports/jacoco-ut.exec",
   "target": "./target/classes/",
-  "xml": "./findbugs_3.0.1_coverage.xml",
+  "xml": "findbugs_3.0.1_coverage.xml",
   "dir": "findbugs-3.0.1"
     },
     {
@@ -65,7 +65,7 @@
   "patch": "../shared/patches/patchfile_gson_2.8.5.patch",
   "exec": "gson/target/coverage-reports/jacoco-ut.exec",
   "target": "./target/classes/",
-  "xml": "./gson_2.8.5_coverage.xml",
+  "xml": "gson_2.8.5_coverage.xml",
   "dir": "gson-gson-parent-2.8.5"
     },
     {
@@ -79,7 +79,7 @@
   "patch": "../shared/patches/patchfile_jgrapht_1.3.1.patch",
   "exec": "jgrapht-core/target/coverage-reports/jacoco-ut.exec",
   "target": "jgrapht-core/target/classes/",
-  "xml": "./jgrapht_1.3.1_core_coverage.xml",
+  "xml": "jgrapht_1.3.1_core_coverage.xml",
   "dir": "jgrapht-jgrapht-1.3.1"
     },
     {
@@ -93,7 +93,7 @@
   "patch": "../shared/patches/patchfile_javacc_7.0.5.patch",
   "exec": "target/coverage-reports/jacoco-ut.exec",
   "target": "./target/classes/",
-  "xml": "./javacc_7.0.5_coverage.xml",
+  "xml": "javacc_7.0.5_coverage.xml",
   "dir": "javacc-7.0.5"
     },
     {
@@ -107,7 +107,7 @@
   "patch": "../shared/patches/patchfile_velocity_engine_2.1_core.patch",
   "exec": "velocity-engine-core/target/coverage-reports/jacoco-ut.exec",
   "target": "velocity-engine-core/target/classes/",
-  "xml": "./velocity_engine_2.1_core_coverage.xml",
+  "xml": "velocity_engine_2.1_core_coverage.xml",
   "dir": "velocity-engine-2.1"
     },
     {
@@ -121,7 +121,7 @@
   "patch": "../shared/patches/patchfile_castor_1.4.0.patch",
   "exec": "schema/target/coverage-reports/jacoco-ut.exec",
   "target": "schema/target/classes/",
-  "xml": "./castor_1.4.0_schema_coverage.xml",
+  "xml": "castor_1.4.0_schema_coverage.xml",
   "dir": "castor-1.4.0"
     },
     {
@@ -133,7 +133,7 @@
   "source": "https://github.com/Sable/soot/archive/4.0.0.tar.gz",
   "patch": "../shared/patches/patchfile_soot_4.0.0.patch",
   "exec": "target/coverage-reports/jacoco-ut.exec",
-  "target": "./target/classes/",
+  "target": "target/classes/",
   "xml": "./soot_4.0.0_coverage.xml",
   "dir": "soot-4.0.0"
     },
@@ -146,7 +146,7 @@
   "source": "https://github.com/codehaus-plexus/plexus-utils/archive/plexus-utils-3.3.0.tar.gz",
   "patch": "../shared/patches/patchfile_plexus_utils_3.3.0.patch",
   "exec": "target/coverage-reports/jacoco-ut.exec",
-  "target": "./target/classes/",
+  "target": "target/classes/",
   "xml": "./plexus_utils_3.3.0_coverage.xml",
   "dir": "plexus-utils-plexus-utils-3.3.0"
     },
@@ -159,7 +159,7 @@
   "source": "https://github.com/FasterXML/jackson-annotations/archive/jackson-annotations-2.10.2.tar.gz",
   "patch": "../shared/patches/patchfile_jackson_annotations_2.10.2.patch",
   "exec": "target/coverage-reports/jacoco-ut.exec",
-  "target": "./target/classes/",
+  "target": "target/classes/",
   "xml": "./jackson_annotations_2.10.2_coverage.xml",
   "dir": "jackson-annotations-jackson-annotations-2.10.2"
     },
@@ -172,7 +172,7 @@
   "source": "https://github.com/phax/ph-commons/archive/ph-commons-parent-pom-9.3.9.tar.gz",
   "patch": "../shared/patches/patchfile_ph_commons_parent_9.3.9.patch",
   "exec": "target/coverage-reports/jacoco-ut.exec",
-  "target": "./target/classes/",
+  "target": "target/classes/",
   "xml": "./ph_commons_ph_commons_9.3.9_coverage.xml",
   "dir": "ph-commons-ph-commons-parent-pom-9.3.9",
   "sub-dir":"ph-commons"
@@ -190,5 +190,60 @@
   "target": "quartz-core/target/classes/",
   "xml": "./quartz_core_2.3.1_coverage.xml",
   "dir": "quartz-quartz-2.3.1"
+    },
+    {
+  "name": "fastjson",
+  "url": "https://github.com/alibaba/fastjson/wiki/Compare_JSON_API",
+  "releases": "https://github.com/alibaba/fastjson/releases",
+  "type": "tgz",
+  "build": "mvn",
+  "version": "1.2.62",
+  "source": "https://github.com/alibaba/fastjson/archive/1.2.62.tar.gz",
+  "patch": "../shared/patches/patchfile_fastjson_1.2.62.patch",
+  "exec": "target/coverage-reports/jacoco-ut.exec",
+  "target": "./target/classes/",
+  "xml": "./fastjson_1.2.62_coverage.xml",
+  "dir": "fastjson-1.2.62"
+    },
+    {
+  "name": "woodstox-core-6.2.0",
+  "url": "https://github.com/FasterXML/woodstox/wiki",
+  "releases": "https://github.com/FasterXML/woodstox/releases/",
+  "type": "tgz",
+  "build": "mvn",
+  "version": "6.2.0",
+  "source": "https://github.com/FasterXML/woodstox/archive/woodstox-core-6.2.0.tar.gz",
+  "patch": "../shared/patches/patchfile_quartz_2.3.1.patch",
+  "exec": "target/coverage-reports/jacoco-ut.exec",
+  "target": "target/classes/",
+  "xml": "./woodstox-woodstox-core-6.2.0_coverage.xml",
+  "dir": "woodstox-woodstox-core-6.2.0"
+    },
+    {
+  "name": "java-classmate",
+  "url": "https://github.com/FasterXML/java-classmate/wiki",
+  "releases": "https://github.com/FasterXML/java-classmate/releases",
+  "type": "tgz",
+  "build": "mvn",
+  "version": "1.5.1",
+  "source": "https://github.com/FasterXML/java-classmate/archive/classmate-1.5.1.tar.gz",
+  "patch": "../shared/patches/patchfile_quartz_2.3.1.patch",
+  "exec": "target/coverage-reports/jacoco-ut.exec",
+  "target": "target/classes/",
+  "xml": "./java-classmate-classmate-1.5.1_coverage.xml",
+  "dir": "java-classmate-classmate-1.5.1"
+    },
+    {
+  "name": "jandex",
+  "releases": "https://github.com/wildfly/jandex/releases",
+  "type": "tgz",
+  "build": "mvn",
+  "version": "2.1.3.Final",
+  "source": "https://github.com/wildfly/jandex/archive/2.1.3.Final.tar.gz",
+  "patch": "../shared/patches/patchfile_quartz_2.3.1.patch",
+  "exec": "target/coverage-reports/jacoco-ut.exec",
+  "target": "target/classes/",
+  "xml": "./jandex-2.1.3.Final_coverage.xml",
+  "dir": "jandex-2.1.3.Final"
     }
 ]
